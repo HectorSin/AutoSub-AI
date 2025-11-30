@@ -1,0 +1,38 @@
+# config.yaml (Default embedded in EXE)
+app:
+  name: "AutoSub-AI"
+  version: "0.1.0"
+
+input:
+  supported_formats: ["mp4", "mkv", "avi", "mov", "webm"]
+  max_file_size_gb: 4
+
+output:
+  dir: "./output" # GUI에서 사용자가 변경 가능
+  naming: "{source_name}_{timestamp}.srt"
+  formats: ["srt"]
+
+processing:
+  chunk_size: 300
+  overlap_size: 5
+  max_workers: 2 
+  temp_dir: "./temp"
+  
+stt:
+  model: "large-v3"
+  model_path: "./models"      # 모델 파일 저장 경로
+  download_on_first_run: true # true: 첫 실행 시 다운로드, false: 번들 모델 사용
+  device: "auto"
+  language: "ko"
+
+llm:
+  provider: "claude"
+  model_name: "claude-3-5-haiku-20241022"
+  # EXE 내부 경로(_MEIPASS) 자동 참조
+  prompt_path: "./src/prompts/correction.txt"
+  glossary_path: "./src/prompts/glossary.json"
+
+logging:
+  level: "INFO"
+  dir: "./logs"
+  json_format: true

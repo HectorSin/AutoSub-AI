@@ -1,0 +1,4 @@
+{
+  "preserve": ["YouTube", "API", "ChatGPT", "Claude"],
+  "replacements": { "레디": "준비" }
+}
